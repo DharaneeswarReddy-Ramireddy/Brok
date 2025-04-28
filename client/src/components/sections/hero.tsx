@@ -95,8 +95,9 @@ export default function Hero() {
               <Button
                 size="lg"
                 className="bg-primary hover:bg-blue-600 text-white"
+                asChild
               >
-                Try For Free
+                <a href="/try-free">Try For Free</a>
               </Button>
               <Button
                 size="lg"
