@@ -33,21 +33,17 @@ export default function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
-            <Link href="/">
-              <a className="text-primary font-bold text-2xl">ResumeAI</a>
+            <Link href="/" className="text-primary font-bold text-2xl">
+              ResumeAI
             </Link>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/">
-              <a className="text-foreground hover:text-primary font-medium transition">
-                Home
-              </a>
+            <Link href="/" className="text-foreground hover:text-primary font-medium transition">
+              Home
             </Link>
-            <Link href="/try-free">
-              <a className="text-foreground hover:text-primary font-medium transition">
-                Try Free
-              </a>
+            <Link href="/try-free" className="text-foreground hover:text-primary font-medium transition">
+              Try Free
             </Link>
             <a href="#features" className="text-foreground hover:text-primary font-medium transition">
               Features
@@ -122,21 +118,19 @@ export default function Header() {
           )}
         >
           <div className="px-2 pt-2 pb-4 space-y-1">
-            <Link href="/">
-              <a
-                className="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Home
-              </a>
+            <Link 
+              href="/"
+              className="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Home
             </Link>
-            <Link href="/try-free">
-              <a
-                className="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Try Free
-              </a>
+            <Link 
+              href="/try-free"
+              className="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Try Free
             </Link>
             <a
               href="#features"
@@ -153,33 +147,31 @@ export default function Header() {
               Pricing
             </a>
             {!user ? (
-              <Link href="/auth">
-                <a
-                  className="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Login / Register
-                </a>
+              <Link 
+                href="/auth"
+                className="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Login / Register
               </Link>
             ) : (
               <>
-                <Link href="/dashboard">
-                  <a
-                    className="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Dashboard
-                  </a>
-                </Link>
-                <a
+                <Link 
+                  href="/dashboard"
                   className="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Dashboard
+                </Link>
+                <button
+                  className="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
                   onClick={() => {
                     setMobileMenuOpen(false);
                     handleLogout();
                   }}
                 >
                   Logout
-                </a>
+                </button>
               </>
             )}
           </div>

@@ -4,6 +4,11 @@ import {
   atsScores, type AtsScore, type InsertAtsScore
 } from "@shared/schema";
 
+import session from "express-session";
+import createMemoryStore from "memorystore";
+
+const MemoryStore = createMemoryStore(session);
+
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
@@ -17,6 +22,8 @@ export interface IStorage {
   getAtsScore(id: number): Promise<AtsScore | undefined>;
   getAtsScoresByResumeId(resumeId: number): Promise<AtsScore[]>;
   createAtsScore(atsScore: InsertAtsScore): Promise<AtsScore>;
+
+  sessionStore: session.Store;
 }
 
 export class MemStorage implements IStorage {
@@ -27,6 +34,8 @@ export class MemStorage implements IStorage {
   private currentResumeId: number;
   private currentAtsScoreId: number;
 
+  sessionStore: session.Store;
+
   constructor() {
     this.users = new Map();
     this.resumes = new Map();
@@ -34,6 +43,9 @@ export class MemStorage implements IStorage {
     this.currentUserId = 1;
     this.currentResumeId = 1;
     this.currentAtsScoreId = 1;
+    this.sessionStore = new MemoryStore({
+      checkPeriod: 86400000, // prune expired entries every 24h
+    });
   }
 
   // User methods
