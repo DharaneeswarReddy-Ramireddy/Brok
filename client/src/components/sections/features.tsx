@@ -42,23 +42,23 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-16 bg-gray-50">
+    <section id="features" className="py-16 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-gray-900">Powerful Resume Optimization Features</h2>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Powerful Resume Optimization Features</h2>
+          <p className="mt-4 text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Everything you need to create a professional, ATS-friendly resume that stands out.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+            <div key={index} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 hover:shadow-md transition">
+              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-              <p className="text-gray-600">{feature.description}</p>
+              <h3 className="text-xl font-semibold mb-2 dark:text-white">{feature.title}</h3>
+              <p className="text-gray-600 dark:text-gray-300">{feature.description}</p>
             </div>
           ))}
         </div>

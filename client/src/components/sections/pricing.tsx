@@ -8,11 +8,11 @@ export default function Pricing() {
   const { pricing, toggle } = usePricingToggle();
 
   return (
-    <section id="pricing" className="py-16 bg-white">
+    <section id="pricing" className="py-16 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900">Simple, Transparent Pricing</h2>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Simple, Transparent Pricing</h2>
+          <p className="mt-4 text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Choose the plan that fits your job search needs
           </p>
 
@@ -21,36 +21,36 @@ export default function Pricing() {
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {/* Free Plan */}
-          <div className="border border-gray-200 rounded-xl shadow-sm hover:shadow transition p-6">
-            <div className="text-center pb-4 border-b border-gray-200">
-              <h3 className="text-xl font-semibold text-gray-900">Free</h3>
+          <div className="border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow transition p-6 dark:bg-gray-800">
+            <div className="text-center pb-4 border-b border-gray-200 dark:border-gray-700">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Free</h3>
               <div className="mt-4 flex items-baseline justify-center">
-                <span className="text-4xl font-bold text-gray-900">${pricing.prices.free}</span>
-                <span className="ml-1 text-gray-600">/month</span>
+                <span className="text-4xl font-bold text-gray-900 dark:text-white">${pricing.prices.free}</span>
+                <span className="ml-1 text-gray-600 dark:text-gray-400">/month</span>
               </div>
-              <p className="mt-2 text-sm text-gray-600">For casual job seekers</p>
+              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">For casual job seekers</p>
             </div>
 
             <ul className="mt-6 space-y-4">
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                <span className="text-gray-600">Basic ATS Score</span>
+                <span className="text-gray-600 dark:text-gray-300">Basic ATS Score</span>
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                <span className="text-gray-600">2 Resume Analyses per Month</span>
+                <span className="text-gray-600 dark:text-gray-300">2 Resume Analyses per Month</span>
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                <span className="text-gray-600">Limited Keyword Suggestions</span>
+                <span className="text-gray-600 dark:text-gray-300">Limited Keyword Suggestions</span>
               </li>
               <li className="flex items-start">
                 <X className="h-5 w-5 text-gray-400 mt-0.5 mr-2" />
-                <span className="text-gray-500">Advanced Optimization</span>
+                <span className="text-gray-500 dark:text-gray-500">Advanced Optimization</span>
               </li>
               <li className="flex items-start">
                 <X className="h-5 w-5 text-gray-400 mt-0.5 mr-2" />
-                <span className="text-gray-500">Job-Specific Templates</span>
+                <span className="text-gray-500 dark:text-gray-500">Job-Specific Templates</span>
               </li>
             </ul>
 
@@ -65,41 +65,41 @@ export default function Pricing() {
           </div>
 
           {/* Premium Plan */}
-          <div className="border-2 border-primary rounded-xl shadow-md hover:shadow-lg transition p-6 transform md:-translate-y-4 relative">
+          <div className="border-2 border-primary rounded-xl shadow-md hover:shadow-lg transition p-6 transform md:-translate-y-4 relative dark:bg-gray-800">
             <div className="absolute -top-3 right-10">
               <span className="bg-accent text-white text-xs font-semibold px-3 py-1 rounded-full uppercase">
                 Popular
               </span>
             </div>
-            <div className="text-center pb-4 border-b border-gray-200">
-              <h3 className="text-xl font-semibold text-gray-900">Premium</h3>
+            <div className="text-center pb-4 border-b border-gray-200 dark:border-gray-700">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Premium</h3>
               <div className="mt-4 flex items-baseline justify-center">
-                <span className="text-4xl font-bold text-gray-900">${pricing.prices.premium}</span>
-                <span className="ml-1 text-gray-600">/month</span>
+                <span className="text-4xl font-bold text-gray-900 dark:text-white">${pricing.prices.premium}</span>
+                <span className="ml-1 text-gray-600 dark:text-gray-400">/month</span>
               </div>
-              <p className="mt-2 text-sm text-gray-600">For active job seekers</p>
+              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">For active job seekers</p>
             </div>
 
             <ul className="mt-6 space-y-4">
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                <span className="text-gray-600">Advanced ATS Score Analysis</span>
+                <span className="text-gray-600 dark:text-gray-300">Advanced ATS Score Analysis</span>
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                <span className="text-gray-600">Unlimited Resume Analyses</span>
+                <span className="text-gray-600 dark:text-gray-300">Unlimited Resume Analyses</span>
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                <span className="text-gray-600">Complete Keyword Optimization</span>
+                <span className="text-gray-600 dark:text-gray-300">Complete Keyword Optimization</span>
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                <span className="text-gray-600">Advanced Content Suggestions</span>
+                <span className="text-gray-600 dark:text-gray-300">Advanced Content Suggestions</span>
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                <span className="text-gray-600">20+ ATS-Optimized Templates</span>
+                <span className="text-gray-600 dark:text-gray-300">20+ ATS-Optimized Templates</span>
               </li>
             </ul>
 
@@ -111,14 +111,14 @@ export default function Pricing() {
           </div>
 
           {/* Pro Plan */}
-          <div className="border border-gray-200 rounded-xl shadow-sm hover:shadow transition p-6">
-            <div className="text-center pb-4 border-b border-gray-200">
-              <h3 className="text-xl font-semibold text-gray-900">Professional</h3>
+          <div className="border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow transition p-6 dark:bg-gray-800">
+            <div className="text-center pb-4 border-b border-gray-200 dark:border-gray-700">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Professional</h3>
               <div className="mt-4 flex items-baseline justify-center">
-                <span className="text-4xl font-bold text-gray-900">${pricing.prices.professional}</span>
-                <span className="ml-1 text-gray-600">/month</span>
+                <span className="text-4xl font-bold text-gray-900 dark:text-white">${pricing.prices.professional}</span>
+                <span className="ml-1 text-gray-600 dark:text-gray-400">/month</span>
               </div>
-              <p className="mt-2 text-sm text-gray-600">For serious career advancement</p>
+              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">For serious career advancement</p>
             </div>
 
             <ul className="mt-6 space-y-4">
