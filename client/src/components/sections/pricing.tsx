@@ -57,7 +57,7 @@ export default function Pricing() {
             <div className="mt-8">
               <Button
                 variant="outline"
-                className="block w-full border-gray-300 hover:bg-gray-50"
+                className="block w-full border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 dark:text-white"
               >
                 Get Started Free
               </Button>
@@ -124,30 +124,30 @@ export default function Pricing() {
             <ul className="mt-6 space-y-4">
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                <span className="text-gray-600">Everything in Premium</span>
+                <span className="text-gray-600 dark:text-gray-300">Everything in Premium</span>
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                <span className="text-gray-600">1-on-1 Expert Resume Review</span>
+                <span className="text-gray-600 dark:text-gray-300">1-on-1 Expert Resume Review</span>
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                <span className="text-gray-600">LinkedIn Profile Optimization</span>
+                <span className="text-gray-600 dark:text-gray-300">LinkedIn Profile Optimization</span>
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                <span className="text-gray-600">Cover Letter AI Assistant</span>
+                <span className="text-gray-600 dark:text-gray-300">Cover Letter AI Assistant</span>
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                <span className="text-gray-600">Interview Preparation Tools</span>
+                <span className="text-gray-600 dark:text-gray-300">Interview Preparation Tools</span>
               </li>
             </ul>
 
             <div className="mt-8">
               <Button
                 variant="outline"
-                className="block w-full border-gray-300 hover:bg-gray-50"
+                className="block w-full border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 dark:text-white"
               >
                 Get Professional
               </Button>
@@ -156,10 +156,10 @@ export default function Pricing() {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-gray-500">Need a custom solution for your team or company?</p>
+          <p className="text-gray-500 dark:text-gray-400">Need a custom solution for your team or company?</p>
           <a
             href="#"
-            className="mt-2 inline-block text-primary font-medium hover:text-blue-700 transition"
+            className="mt-2 inline-block text-primary font-medium hover:text-blue-700 dark:hover:text-blue-400 transition"
           >
             Contact us for Enterprise pricing
           </a>
