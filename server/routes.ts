@@ -7,6 +7,7 @@ import {
   insertResumeSchema, 
   insertAtsScoreSchema 
 } from "@shared/schema";
+import { setupAuth } from "./auth";
 import { analyzeResume } from "./utils/resume-analyzer";
 
 // Configure multer for file uploads
@@ -27,6 +28,9 @@ const upload = multer({
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Set up authentication routes
+  setupAuth(app);
+  
   // health check endpoint
   app.get("/api/health", (_req: Request, res: Response) => {
     res.json({ status: "ok" });

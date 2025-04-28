@@ -18,9 +18,12 @@ export interface ATSScoreResult {
  * Submit resume and job description for ATS scoring
  */
 export async function submitForATSScoring(
-  resumeId: number,
+  resumeId: number | null,
   jobDescription: string
 ): Promise<ATSScoreResult> {
+  if (!resumeId) {
+    throw new Error("Resume ID is required");
+  }
   try {
     const response = await fetch("/api/resume/analyze", {
       method: "POST",

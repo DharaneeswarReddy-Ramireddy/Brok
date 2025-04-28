@@ -79,7 +79,9 @@ export class MemStorage implements IStorage {
 
   async createResume(insertResume: InsertResume): Promise<Resume> {
     const id = this.currentResumeId++;
-    const resume: Resume = { ...insertResume, id };
+    // Ensure userId is either a number or null, not undefined
+    const userId = insertResume.userId ?? null;
+    const resume: Resume = { ...insertResume, id, userId };
     this.resumes.set(id, resume);
     return resume;
   }
@@ -101,7 +103,9 @@ export class MemStorage implements IStorage {
 
   async createAtsScore(insertAtsScore: InsertAtsScore): Promise<AtsScore> {
     const id = this.currentAtsScoreId++;
-    const atsScore: AtsScore = { ...insertAtsScore, id };
+    // Ensure resumeId is either a number or null, not undefined
+    const resumeId = insertAtsScore.resumeId ?? null;
+    const atsScore: AtsScore = { ...insertAtsScore, id, resumeId };
     this.atsScores.set(id, atsScore);
     return atsScore;
   }
