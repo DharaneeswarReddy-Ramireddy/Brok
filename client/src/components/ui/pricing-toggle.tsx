@@ -20,7 +20,7 @@ export function PricingToggle({
 
   return (
     <div className="flex items-center justify-center mt-8">
-      <span className="text-gray-700 mr-3">Monthly</span>
+      <span className="text-gray-700 dark:text-gray-300 mr-3">Monthly</span>
       <div className="relative inline-block w-12 mr-3 align-middle">
         <input
           type="checkbox"
@@ -32,18 +32,18 @@ export function PricingToggle({
         <div
           className={cn(
             "block overflow-hidden h-6 rounded-full cursor-pointer transition",
-            isChecked ? "bg-primary" : "bg-gray-300"
+            isChecked ? "bg-primary" : "bg-gray-300 dark:bg-gray-600"
           )}
         >
           <span
             className={cn(
-              "absolute block w-6 h-6 rounded-full bg-white border-2 border-gray-300 transform transition-transform duration-200 ease-in",
+              "absolute block w-6 h-6 rounded-full bg-white dark:bg-gray-200 border-2 border-gray-300 dark:border-gray-600 transform transition-transform duration-200 ease-in",
               isChecked ? "translate-x-full" : ""
             )}
           />
         </div>
       </div>
-      <span className="text-gray-700">
+      <span className="text-gray-700 dark:text-gray-300">
         Annual <span className="text-green-500 font-medium">(Save 20%)</span>
       </span>
     </div>
