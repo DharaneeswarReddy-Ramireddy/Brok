@@ -3,55 +3,55 @@ import { Play } from "lucide-react";
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-16 bg-white">
+    <section id="how-it-works" className="py-16 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-gray-900">How ResumeAI Works</h2>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">How ResumeAI Works</h2>
+          <p className="mt-4 text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Optimize your resume in three simple steps
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           <div className="text-center">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
               <span className="text-primary font-bold text-xl">1</span>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Upload Your Resume</h3>
-            <p className="text-gray-600">
+            <h3 className="text-xl font-semibold mb-2 dark:text-white">Upload Your Resume</h3>
+            <p className="text-gray-600 dark:text-gray-300">
               Upload your current resume in PDF or DOCX format to our secure platform.
             </p>
           </div>
 
           <div className="text-center">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
               <span className="text-primary font-bold text-xl">2</span>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Add Job Description</h3>
-            <p className="text-gray-600">
+            <h3 className="text-xl font-semibold mb-2 dark:text-white">Add Job Description</h3>
+            <p className="text-gray-600 dark:text-gray-300">
               Paste the job description to get tailored optimization suggestions.
             </p>
           </div>
 
           <div className="text-center">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
               <span className="text-primary font-bold text-xl">3</span>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Get Your Score & Optimize</h3>
-            <p className="text-gray-600">
+            <h3 className="text-xl font-semibold mb-2 dark:text-white">Get Your Score & Optimize</h3>
+            <p className="text-gray-600 dark:text-gray-300">
               Receive your ATS compatibility score and detailed improvement suggestions.
             </p>
           </div>
         </div>
 
-        <div className="mt-16 bg-gray-50 rounded-xl p-8">
+        <div className="mt-16 bg-gray-50 dark:bg-gray-800 rounded-xl p-8">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <h3 className="text-2xl font-semibold mb-4">See Our Tool in Action</h3>
-              <p className="text-gray-600 mb-6">
+              <h3 className="text-2xl font-semibold mb-4 dark:text-white">See Our Tool in Action</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
                 Watch how easily you can optimize your resume and improve your chances of landing interviews.
               </p>
-              <Button variant="link" className="inline-flex items-center text-primary font-medium hover:text-blue-700">
+              <Button variant="link" className="inline-flex items-center text-primary font-medium hover:text-blue-700 dark:hover:text-blue-400">
                 Schedule a Demo
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

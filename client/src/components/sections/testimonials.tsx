@@ -91,11 +91,11 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="py-16 bg-gray-50">
+    <section id="testimonials" className="py-16 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900">Success Stories from Our Users</h2>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Success Stories from Our Users</h2>
+          <p className="mt-4 text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             See how ResumeAI has helped job seekers land their dream roles
           </p>
         </div>
@@ -104,7 +104,7 @@ export default function Testimonials() {
           <Button
             variant="outline"
             size="icon"
-            className="absolute -left-4 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-white rounded-full shadow-md"
+            className="absolute -left-4 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-white dark:bg-gray-800 rounded-full shadow-md"
             onClick={() => goToSlide(currentSlide - 1)}
             disabled={currentSlide === 0}
           >
@@ -123,7 +123,7 @@ export default function Testimonials() {
                   key={index}
                   className={`w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4`}
                 >
-                  <div className="bg-white rounded-xl shadow-sm p-6 h-full">
+                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 h-full">
                     <div className="flex items-center mb-4">
                       <div className="flex-shrink-0">
                         <img
@@ -133,8 +133,8 @@ export default function Testimonials() {
                         />
                       </div>
                       <div className="ml-4">
-                        <h4 className="text-lg font-semibold">{testimonial.name}</h4>
-                        <p className="text-gray-600">{testimonial.role}</p>
+                        <h4 className="text-lg font-semibold dark:text-white">{testimonial.name}</h4>
+                        <p className="text-gray-600 dark:text-gray-300">{testimonial.role}</p>
                       </div>
                     </div>
                     <div className="mb-4">
@@ -144,8 +144,8 @@ export default function Testimonials() {
                         ))}
                       </div>
                     </div>
-                    <p className="text-gray-700 mb-4">{testimonial.content}</p>
-                    <p className="text-sm text-gray-500 italic">{testimonial.improvement}</p>
+                    <p className="text-gray-700 dark:text-gray-200 mb-4">{testimonial.content}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 italic">{testimonial.improvement}</p>
                   </div>
                 </div>
               ))}
@@ -155,7 +155,7 @@ export default function Testimonials() {
           <Button
             variant="outline"
             size="icon"
-            className="absolute -right-4 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-white rounded-full shadow-md"
+            className="absolute -right-4 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-white dark:bg-gray-800 rounded-full shadow-md"
             onClick={() => goToSlide(currentSlide + 1)}
             disabled={currentSlide >= maxSlide}
           >
@@ -170,7 +170,7 @@ export default function Testimonials() {
               key={index}
               className={cn(
                 "w-2 h-2 rounded-full mx-1",
-                currentSlide === index ? "bg-primary" : "bg-gray-300"
+                currentSlide === index ? "bg-primary" : "bg-gray-300 dark:bg-gray-600"
               )}
               onClick={() => goToSlide(index)}
               aria-label={`Go to slide ${index + 1}`}
