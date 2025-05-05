@@ -65,4 +65,16 @@ dump.rdb
 .env.development.local
 .env.test.local
 .env.production.local
-*.pem 
+*.pem
+
+# Specific directories to ignore
+backend/venv/
+backend/__pycache__/
+backend/*.pyc
+backend/build/
+backend/dist/
+backend/*.egg-info/
+frontend/node_modules/
+frontend/.next/
+frontend/dist/
+frontend/build/ 
