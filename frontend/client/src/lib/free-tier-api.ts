@@ -1,6 +1,6 @@
 import { ResumeAnalysisResult, RateLimitInfo } from '@/types/api';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 export async function analyzeResumeFree(resumeContent: string, jobTitle?: string, industry?: string): Promise<ResumeAnalysisResult> {
     const response = await fetch(`${API_BASE_URL}/try-free/analyze`, {
