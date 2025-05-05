@@ -12,10 +12,13 @@ class OptimizationResult(BaseModel):
     suggestions: List[str]
     keywords: List[str]
     improvements: Dict[str, float]
-    ats_score: Optional[float] = None
-    readability_score: Optional[float] = None
+    ats_score: float
+    readability_score: float
+    optimized_resume: str
+    improvements_made: List[str]
+    further_suggestions: List[str]
 
 class RateLimitResponse(BaseModel):
-    attempts_remaining: int
+    remaining_attempts: int
     reset_time: Optional[int] = None  # Time in seconds until rate limit resets
     max_attempts: Optional[int] = 3  # Maximum number of attempts allowed in free tier 
