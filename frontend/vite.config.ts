@@ -16,6 +16,11 @@ export default defineConfig({
         ]
       : []),
   ],
+  server: process.platform === 'win32' ? {
+    port: 5000,
+    open: true,
+    host: true
+  } : undefined,
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
