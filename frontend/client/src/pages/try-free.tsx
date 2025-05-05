@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
@@ -7,9 +7,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { FileUpload } from "@/components/ui/file-upload";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { submitForATSScoring, formatScore, getScoreColor, getScoreDescription } from "@/lib/ats-scoring";
+import { formatScore, getScoreColor, getScoreDescription } from "@/lib/ats-scoring";
+import { analyzeResumeFree, getFreeAttemptsRemaining } from "@/lib/free-tier-api";
 import { Loader2, File, CheckCircle, AlertTriangle, Info } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
+import { RateLimitInfo } from "@/types/api";
 
 export default function TryFree() {
   const [, navigate] = useLocation();
@@ -17,17 +19,52 @@ export default function TryFree() {
   const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [jobDescription, setJobDescription] = useState("");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [uploadedResumeId, setUploadedResumeId] = useState<number | null>(null);
+  const [resumeContent, setResumeContent] = useState<string>("");
+  const [rateLimitInfo, setRateLimitInfo] = useState<RateLimitInfo | null>(null);
   const [result, setResult] = useState<{
     score: number;
-    keywords: { keyword: string; matches: number; found: boolean }[];
-    suggestions: { category: string; items: string[] }[];
+    keywords: string[];
+    suggestions: string[];
+    improvements: { [key: string]: number };
   } | null>(null);
 
-  const handleAnalyzeResume = async () => {
-    if (!resumeFile) {
+  useEffect(() => {
+    // Fetch remaining attempts when component mounts
+    const fetchRateLimit = async () => {
+      try {
+        const info = await getFreeAttemptsRemaining();
+        setRateLimitInfo(info);
+      } catch (error) {
+        console.error("Error fetching rate limit info:", error);
+      }
+    };
+    fetchRateLimit();
+  }, []);
+
+  const handleFileRead = async (file: File) => {
+    try {
+      const text = await file.text();
+      setResumeContent(text);
+    } catch (error) {
+      console.error("Error reading file:", error);
       toast({
-        title: "No resume selected",
+        title: "Error reading file",
+        description: "Failed to read the resume file. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (resumeFile) {
+      handleFileRead(resumeFile);
+    }
+  }, [resumeFile]);
+
+  const handleAnalyzeResume = async () => {
+    if (!resumeContent) {
+      toast({
+        title: "No resume content",
         description: "Please upload your resume first",
         variant: "destructive",
       });
@@ -47,30 +84,12 @@ export default function TryFree() {
     setResult(null);
 
     try {
-      // First upload the resume if not already uploaded
-      let resumeId = uploadedResumeId;
-      if (!resumeId) {
-        const formData = new FormData();
-        formData.append("resume", resumeFile);
-        formData.append("name", resumeFile.name);
-
-        const response = await fetch("/api/resume/upload", {
-          method: "POST",
-          body: formData,
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to upload resume");
-        }
-
-        const data = await response.json();
-        resumeId = data.id;
-        setUploadedResumeId(resumeId);
-      }
-
-      // Then analyze the resume
-      const analysisResult = await submitForATSScoring(resumeId, jobDescription);
+      const analysisResult = await analyzeResumeFree(resumeContent);
       setResult(analysisResult);
+      
+      // Refresh rate limit info after analysis
+      const updatedRateLimit = await getFreeAttemptsRemaining();
+      setRateLimitInfo(updatedRateLimit);
 
       toast({
         title: "Analysis complete!",
@@ -78,9 +97,10 @@ export default function TryFree() {
       });
     } catch (error) {
       console.error("Error analyzing resume:", error);
+      const errorMessage = error instanceof Error ? error.message : "There was an error analyzing your resume";
       toast({
         title: "Analysis failed",
-        description: "There was an error analyzing your resume. Please try again.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
@@ -91,6 +111,20 @@ export default function TryFree() {
   const handleCreateAccount = () => {
     navigate("/auth");
   };
+
+  const remainingAttemptsSection = rateLimitInfo && (
+    <div className="mb-8 text-center">
+      <div className="inline-block bg-blue-50 rounded-lg px-6 py-4">
+        <h3 className="text-lg font-semibold mb-2">Free Tier Usage</h3>
+        <p className="text-gray-600">
+          You have {rateLimitInfo.attempts_remaining} out of {rateLimitInfo.max_attempts} free attempts remaining
+          {rateLimitInfo.reset_time && rateLimitInfo.reset_time > 0 && (
+            <span> (resets in {Math.ceil(rateLimitInfo.reset_time / 3600)} hours)</span>
+          )}
+        </p>
+      </div>
+    </div>
+  );
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -104,6 +138,8 @@ export default function TryFree() {
               Upload your resume and a job description to get a free ATS compatibility analysis
             </p>
           </div>
+          
+          {remainingAttemptsSection}
           
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-8">
@@ -202,7 +238,7 @@ export default function TryFree() {
                             <div>
                               <span className="font-medium">Keywords Match</span>
                               <p className="text-sm text-gray-600">
-                                Your resume matches {result.keywords.filter(k => k.found).length} out of {result.keywords.length} important keywords.
+                                Your resume matches {result.keywords.length} out of {result.keywords.length} important keywords.
                               </p>
                             </div>
                           </div>
@@ -212,8 +248,8 @@ export default function TryFree() {
                             <div>
                               <span className="font-medium">Missing Keywords</span>
                               <p className="text-sm text-gray-600">
-                                Consider adding these keywords: {result.keywords.filter(k => !k.found).slice(0, 3).map(k => k.keyword).join(", ")}
-                                {result.keywords.filter(k => !k.found).length > 3 ? " and more..." : ""}
+                                Consider adding these keywords: {result.keywords.slice(0, 3).join(", ")}
+                                {result.keywords.length > 3 ? " and more..." : ""}
                               </p>
                             </div>
                           </div>
@@ -223,7 +259,7 @@ export default function TryFree() {
                             <div>
                               <span className="font-medium">Suggestions</span>
                               <p className="text-sm text-gray-600">
-                                We've found {result.suggestions.reduce((acc, s) => acc + s.items.length, 0)} improvement suggestions for your resume.
+                                We've found {result.suggestions.length} improvement suggestions for your resume.
                               </p>
                             </div>
                           </div>
